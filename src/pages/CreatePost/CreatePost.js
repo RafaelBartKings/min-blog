@@ -17,13 +17,6 @@ const CreatePost = () => {
    const navigate = useNavigate();
 
    // 🚩 CORREÇÃO ESSENCIAL: Redireciona APENAS após o sucesso do Firebase
-   useEffect(() => {
-      // Verifica se a operação não está mais carregando E não há erro
-      // O response.payload aqui representa o documento inserido
-      if (response.payload && !response.loading && !response.error) {
-         navigate('/');
-      }
-   }, [response, navigate]);
 
    const handleSubmit = e => {
       e.preventDefault();
@@ -72,7 +65,7 @@ const CreatePost = () => {
          createdBy: user.displayName
       });
 
-      // 🚩 LINHA REMOVIDA: navigate('/') foi movido para o useEffect
+      navigate('/');
    };
 
    return (
