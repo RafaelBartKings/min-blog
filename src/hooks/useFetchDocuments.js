@@ -24,7 +24,15 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
 
          try {
             let q;
-            q = query(collectionRef, orderBy('createdAt', 'desc'));
+            if (search) {
+               q = query(
+                  collectionRef,
+                  where('tags', 'array-contains', search),
+                  orderBy('createdAt', 'desc')
+               );
+            } else {
+               q = query(collectionRef, orderBy('createdAt', 'desc'));
+            }
 
             const unsubscribe = onSnapshot(
                q,

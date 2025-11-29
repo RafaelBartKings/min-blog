@@ -10,8 +10,14 @@ const Home = () => {
    const [query, setQuery] = useState('');
    const { documents: posts, loading } = useFetchDocuments('posts');
 
+   const navigate = useNavigate();
+
    const handleSubmit = e => {
       e.preventDefault();
+
+      if (query) {
+         return navigate(`/search?q=${query}`);
+      }
    };
 
    return (
@@ -27,7 +33,8 @@ const Home = () => {
          </form>
          <div>
             {loading && <p>Carregando...</p>}
-            {posts && posts.map(post => <PostDetail key={post.id} post={post}/>)}
+            {posts &&
+               posts.map(post => <PostDetail key={post.id} post={post} />)}
             {posts && posts.length === 0 && (
                <div className={styles.nonposts}>
                   <p>Não foram encontrados posts</p>

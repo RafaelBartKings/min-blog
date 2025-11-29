@@ -1,37 +1,31 @@
-/* PostDetail.module.css */
-
 .post_detail {
-    /* 1. Define uma largura máxima para o post (ex: 80% da tela ou 800px) */
-    max-width: 800px;
-    width: 90%; 
-    
-    /* 2. Centraliza o bloco HORIZONTALMENTE */
-    /* Isso funciona em elementos de display: block com largura definida */
-    margin: 0 auto;
-    
-    /* Outros estilos visuais (opcional) */
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 20px;
-    text-align: center; /* Centraliza textos e itens internos que são inline */
+  margin-bottom: 2em;
 }
 
-/* Regras para a imagem */
 .post_detail img {
-    max-width: 100%;
-    height: auto;
+  max-width: 600px;
 }
 
-/* Regras para as tags (opcional, para alinhar as tags em linha) */
-.tags {
-    display: flex;
-    justify-content: center; /* Centraliza as tags dentro do bloco */
-    gap: 8px; /* Espaço entre as tags */
-    margin-top: 10px;
+.post_detail h2 {
+  margin-bottom: 0.4em;
 }
 
-.tag_item {
-    background-color: #eee;
-    padding: 4px 8px;
-    border-radius: 4px;
+.post_detail .tags {
+  margin-bottom: 1.2em;
+  display: flex;
+}
+
+.tags p {
+  margin-right: 0.5em;
+}
+
+.tags span {
+  font-weight: bold;
+}
+
+.createdby {
+  font-style: italic;
+  color: #444;
+  font-size: 0.8em;
+  margin-bottom: 1em;
 }
