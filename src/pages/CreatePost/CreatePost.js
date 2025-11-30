@@ -62,10 +62,13 @@ const CreatePost = () => {
          body,
          tags: tagsArray,
          uid: user.uid,
-         createdBy: user.displayName
+         createdBy: user.displayName,
+         createdAt: new Date()
       });
 
-      navigate('/');
+      if (!response.error) {
+         navigate('/');
+      }
    };
 
    return (
