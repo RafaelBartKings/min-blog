@@ -3,8 +3,8 @@ import styles from './EditPost.module.css';
 import { useState, useEffect } from 'react'; // Adicionado useEffect
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuthValue } from '../../context/AuthContext';
-import { useInsertDocument } from '../../hooks/useInsertDocument';
 import { useFetchDocument } from '../../hooks/useFetchDocument';
+import { useUpdateDocument } from '../../hooks/useUpdateDocument';
 
 const EditPost = () => {
    const { id } = useParams();
@@ -28,7 +28,7 @@ const EditPost = () => {
    }, [post]);
 
    const { user } = useAuthValue();
-   const { insertDocument, response } = useInsertDocument('posts');
+   const { updateDocument, response } = useUpdateDocument('posts');
    const navigate = useNavigate();
 
    // 🚩 CORREÇÃO ESSENCIAL: Redireciona APENAS após o sucesso do Firebase
@@ -70,8 +70,7 @@ const EditPost = () => {
          return;
       }
 
-      // 4. **INSERÇÃO DE DADOS**
-      insertDocument({
+      const data = {
          title,
          image,
          body,
@@ -79,10 +78,13 @@ const EditPost = () => {
          uid: user.uid,
          createdBy: user.displayName,
          createdAt: new Date()
-      });
+      };
+
+      // 4. **INSERÇÃO DE DADOS**
+      updateDocument(id, data);
 
       if (!response.error) {
-         navigate('/');
+         navigate('/dashboard');
       }
    };
 
